@@ -17,9 +17,4 @@
 
     <nav class="navbar bg-light border-bottom shadow-sm">
         <div class="container"><a href="http://localhost/parcialito/" class="navbar-brand fw-semibold">PARCIALITO</a></div>
-        <?php if (isset($_SESSION['username'])) : ?>
-            <div class="navbar-nav mx-auto">
-                <span> Usuario: <a href="logout.php"><?= $_SESSION['username'] ?></a></span>
-            </div>
-        <?php endif ?>
     </nav>

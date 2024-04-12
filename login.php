@@ -1,11 +1,5 @@
 <?php include('includes/header.php') ?>
-<?php
-if (isset($_POST['username']) && !empty($_POST['username'])) {
-    $username = $_POST['username'];
-    $_SESSION['username'] = $username;
-    //header('Location: http://localhost/parcialito/');
-}
-?>
+
 <div class="container p-4">
     <div class="card card-body shadow-sm w-25 mx-auto my-auto">
         <form action="login.php" method="post" autocomplete="off" id="form_login">
@@ -39,6 +33,7 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
         const passInput = document.querySelector('#pass');
         if (userInput) {
             userInput.oninput = function() {
+                $("#errors_login").empty();
                 if (this.value.length > 8) {
                     this.value = this.value.slice(0, 8);
                 }
@@ -59,6 +54,7 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
         }
         if (passInput) {
             passInput.oninput = function() {
+                $("#errors_login").empty();
                 if (this.value.length >= 8) {
                     this.style.border = '1px solid green';
                     formLoginValido.password = true;

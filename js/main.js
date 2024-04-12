@@ -130,7 +130,7 @@ function prepare_all() {
       $("#errors_login").empty();
       $("#errors_login").prev().removeClass("mb-3");
       $("#errors_login").css("display", "").prepend(template);
-      document.getElementById("form_login").submit();
+      //document.getElementById("form_login").submit();
     } else {
       if (!areAllValuesEqualTo(formLoginValido, false)) {
         let differents = Object.keys(getDifferentValues(formLoginValido, true));

@@ -2,66 +2,62 @@
 <?php include('includes/header.php') ?>
 
 <!-- CODE INDEX -->
-<?php if (isset($_SESSION['username'])) : ?>
-    <div class="container-fluid p-4">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card card-body shadow-sm">
-                    <form action="save.php" method="post" autocomplete="off" id="form_add">
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                <input type="number" min="0" class="form-control" name="nit" placeholder="NIT">
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="row mx-auto">
-                                    <div class="col"><input type="text" class="form-control" name="first_name" placeholder="Primer nombre"></div>
-                                    <div class="col"><input type="text" class="form-control" name="middle_name" placeholder="Segundo nombre"></div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="row mx-auto">
-                                    <div class="col"><input type="text" class="form-control" name="first_last_name" placeholder="Primer apellido"></div>
-                                    <div class="col"><input type="text" class="form-control" name="middle_last_name" placeholder="Segundo apellido"></div>
-                                </div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input class="form-control" type="date" id="datepicker" name="birth_date" max="<?php echo date('Y-m-d', strtotime('yesterday')) ?>" placeholder="Fecha de nacimiento" required />
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="number" min="0" class="form-control" name="phone" placeholder="Teléfono">
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="email" class="form-control" name="email" placeholder="Correo electronico">
-                            </div>
-                            <div class="input-group" id="actions">
-                                <input type="submit" name="save" value="Guardar" class="btn btn-success w-100">
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-body shadow-sm">
+                <form action="save.php" method="post" autocomplete="off" id="form_add">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input type="number" min="0" class="form-control" name="nit" placeholder="NIT">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="row mx-auto">
+                                <div class="col"><input type="text" class="form-control" name="first_name" placeholder="Primer nombre"></div>
+                                <div class="col"><input type="text" class="form-control" name="middle_name" placeholder="Segundo nombre"></div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="input-group mb-3">
+                            <div class="row mx-auto">
+                                <div class="col"><input type="text" class="form-control" name="first_last_name" placeholder="Primer apellido"></div>
+                                <div class="col"><input type="text" class="form-control" name="middle_last_name" placeholder="Segundo apellido"></div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="date" id="datepicker" name="birth_date" max="<?php echo date('Y-m-d', strtotime('yesterday')) ?>" placeholder="Fecha de nacimiento" required />
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="number" min="0" class="form-control" name="phone" placeholder="Teléfono">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Correo electronico">
+                        </div>
+                        <div class="input-group" id="actions">
+                            <input type="submit" name="save" value="Guardar" class="btn btn-success w-100">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-8">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-sm align-middle shadow-sm">
-                        <thead class="text-center">
-                            <tr>
-                                <th style="width: 103px;" class="bg-light fw-semibold">NIT</th>
-                                <th style="width: 285px;" class="bg-light fw-semibold">Nombre completo</th>
-                                <th style="width: 175px;" class="bg-light fw-semibold">Fecha de nacimiento</th>
-                                <th style="width: 103px;" class="bg-light fw-semibold">Teléfono</th>
-                                <th style="width: 264px;" class="bg-light fw-semibold">Correo electronico</th>
-                                <th style="width: 84px;" class="bg-light fw-semibold">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="users"></tbody>
-                    </table>
-                </div>
+        </div>
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm align-middle shadow-sm">
+                    <thead class="text-center">
+                        <tr>
+                            <th style="width: 103px;" class="bg-light fw-semibold">NIT</th>
+                            <th style="width: 285px;" class="bg-light fw-semibold">Nombre completo</th>
+                            <th style="width: 175px;" class="bg-light fw-semibold">Fecha de nacimiento</th>
+                            <th style="width: 103px;" class="bg-light fw-semibold">Teléfono</th>
+                            <th style="width: 264px;" class="bg-light fw-semibold">Correo electronico</th>
+                            <th style="width: 84px;" class="bg-light fw-semibold">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users"></tbody>
+                </table>
             </div>
         </div>
     </div>
-<?php else : ?>
-    <?php header('Location: login.php') ?>
-<?php endif ?>
+</div>
 
 <script>
     function calculateAge(date) {
