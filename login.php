@@ -1,9 +1,9 @@
 <?php include('includes/header.php') ?>
 <?php
-if (isset($_POST['login'])) {
+if (isset($_POST['username']) && !empty($_POST['username'])) {
     $username = $_POST['username'];
     $_SESSION['username'] = $username;
-    header('Location: http://localhost/parcialito/');
+    //header('Location: http://localhost/parcialito/');
 }
 ?>
 <div class="container p-4">
@@ -12,11 +12,12 @@ if (isset($_POST['login'])) {
             <h4>Iniciar sesión</h4>
             <div class="form-group">
                 <div class="input-group mb-3">
-                    <input type="text" id="user" class="form-control" name="username" placeholder="Usuario" required>
+                    <input type="text" id="user" class="form-control" name="username" placeholder="Usuario">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" id="pass" class="form-control" name="password" placeholder="Contraseña" required>
+                    <input type="password" id="pass" class="form-control" name="password" placeholder="Contraseña">
                 </div>
+                <div id="errors_login" class="input-group mb-3" style="display: none;"></div>
                 <div class="input-group">
                     <input type="submit" name="login" value="Iniciar sesión" class="btn btn-success w-100">
                 </div>
@@ -58,7 +59,7 @@ if (isset($_POST['login'])) {
         }
         if (passInput) {
             passInput.oninput = function() {
-                if (this.value.length >= 6) {
+                if (this.value.length >= 8) {
                     this.style.border = '1px solid green';
                     formLoginValido.password = true;
                 } else {

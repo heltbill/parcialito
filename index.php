@@ -77,19 +77,6 @@
         return age;
     }
 
-    function getDifferentValues(obj, targetValue) {
-        return Object.entries(obj)
-            .filter(([key, value]) => value !== targetValue)
-            .reduce((acc, [key, value]) => {
-                acc[key] = value;
-                return acc;
-            }, {});
-    }
-
-    function areAllValuesEqualTo(obj, targetValue) {
-        return Object.values(obj).every(value => value === targetValue);
-    }
-
     var formValido = {
         nit: false,
         first_name: false,

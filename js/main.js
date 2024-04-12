@@ -51,11 +51,24 @@ function cancelEdit() {
     email: false,
   };
 }
+function getDifferentValues(obj, targetValue) {
+  return Object.entries(obj)
+    .filter(([key, value]) => value !== targetValue)
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {});
+}
+
+function areAllValuesEqualTo(obj, targetValue) {
+  return Object.values(obj).every((value) => value === targetValue);
+}
 
 function prepare_all() {
   if (!location.href.includes("login")) {
     fetchUsers();
   }
+
   $("#form_add").on("submit", (evt) => {
     evt.preventDefault();
     let endpoint = edit === true ? "edit.php" : $(evt.target).attr("action");
@@ -110,10 +123,30 @@ function prepare_all() {
   });
 
   $("#form_login").on("submit", (evt) => {
+    evt.preventDefault();
+    let errorMsg = "";
     if (areAllValuesEqualTo(formLoginValido, true)) {
-      this.submit();
+      let template = `<span style="font-size: 14px;padding-left: 5px;color: green;">Sus credenciales son correctas</span>`;
+      $("#errors_login").empty();
+      $("#errors_login").prev().removeClass("mb-3");
+      $("#errors_login").css("display", "").prepend(template);
+      document.getElementById("form_login").submit();
     } else {
-      evt.preventDefault();
+      if (!areAllValuesEqualTo(formLoginValido, false)) {
+        let differents = Object.keys(getDifferentValues(formLoginValido, true));
+        if (differents.length === 1 && differents[0].includes("user")) {
+          errorMsg = "El usuario no es valido";
+        }
+        if (differents.length === 1 && differents[0].includes("pass")) {
+          errorMsg = "La contraseña no es valida";
+        }
+      } else {
+        errorMsg = "El usuario y contraseña no es valido";
+      }
+      let template = `<span style="font-size: 14px;padding-left: 5px;color: red;">${errorMsg}</span>`;
+      $("#errors_login").empty();
+      $("#errors_login").prev().removeClass("mb-3");
+      $("#errors_login").css("display", "").prepend(template);
     }
   });
 
